@@ -195,6 +195,11 @@ declare namespace Eps {
 		orderNum?: number;
 
 		/**
+		 * 是否机构 0-否 1-是
+		 */
+		isMain?: number;
+
+		/**
 		 * 创建时间
 		 */
 		createTime?: string;
@@ -6743,6 +6748,20 @@ declare namespace Eps {
 		list(data?: any): Promise<BaseSysDepartmentEntity[]>;
 
 		/**
+		 * 分页查询
+		 */
+		page(data?: any): Promise<{
+			pagination: { size: number; page: number; total: number; [key: string]: any };
+			list: BaseSysDepartmentEntity[];
+			[key: string]: any;
+		}>;
+
+		/**
+		 * 单个信息
+		 */
+		info(data?: any): Promise<BaseSysDepartmentEntity>;
+
+		/**
 		 * 新增
 		 */
 		add(data?: any): Promise<any>;
@@ -6750,7 +6769,15 @@ declare namespace Eps {
 		/**
 		 * 权限标识
 		 */
-		permission: { delete: string; update: string; order: string; list: string; add: string };
+		permission: {
+			delete: string;
+			update: string;
+			order: string;
+			list: string;
+			page: string;
+			info: string;
+			add: string;
+		};
 
 		/**
 		 * 权限状态
@@ -6760,6 +6787,8 @@ declare namespace Eps {
 			update: boolean;
 			order: boolean;
 			list: boolean;
+			page: boolean;
+			info: boolean;
 			add: boolean;
 		};
 
@@ -11328,5 +11357,176 @@ declare namespace Eps {
 		vibration: { info: VibrationInfo };
 	};
 
-	undefined;
+	type DictKey =
+		| "natives"
+		| "sex"
+		| "education"
+		| "health_status"
+		| "marriage"
+		| "position"
+		| "majorin"
+		| "polity"
+		| "compose_location"
+		| "compose_mothed"
+		| "near_compose"
+		| "family_people"
+		| "family_othersick"
+		| "lithiasis_diagnose"
+		| "lithiasis_process"
+		| "lithiasis_cureresult"
+		| "female_menarche"
+		| "female_cycle"
+		| "female_menstrual"
+		| "female_procreate"
+		| "female_misbirth"
+		| "current_sjtpark"
+		| "current_sjttime"
+		| "current_mxyt"
+		| "current_sjtlook"
+		| "current_xuen"
+		| "current_painkn"
+		| "current_curemothed"
+		| "body_t"
+		| "body_abdomenache"
+		| "body_abdomenoisition"
+		| "body_kidneyache"
+		| "body_kidneydegree"
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| "image_kub"
+		| "image_kubsize"
+		| "image_num"
+		| "image_klocition"
+		| "image_ulocition"
+		| "image_utlocition"
+		| "medical_curepart1"
+		| "medical_curepart2"
+		| "medical_fzzl"
+		| "medical_pre"
+		| "medical_bracket"
+		| "medical_post"
+		| "medical_locatemeth"
+		| "medical_striketimes"
+		| "medical_feedback"
+		| "medical_tengtong"
+		| "medical_machine1"
+		| "medical_machine2"
+		| "near_hematuria"
+		| "near_lumbago"
+		| "near_syndromesx"
+		| "near_eductionsum"
+		| "near_assistcure1"
+		| "near_SWLassistcuring"
+		| "near_SWLassistcured"
+		| "near_SWLAfterAssistcure"
+		| "near_avidininfect"
+		| ""
+		| "near_analyse2"
+		| "near_result"
+		| "future_swlcure"
+		| "future_nonecure"
+		| "future_bp"
+		| "future_lifthabit"
+		| "future_waterchg"
+		| "future_dutychg"
+		| "future_dutyrisk"
+		| ""
+		| ""
+		| ""
+		| ""
+		| "duty"
+		| "item_type"
+		| "item_group"
+		| "past_sickname"
+		| "past_curestatus"
+		| ""
+		| "metabolic-anatomical"
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| "sys_module"
+		| ""
+		| "appointment_time"
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| ""
+		| "itemtype"
+		| ""
+		| "etiology_recomm"
+		| "patient_info"
+		| "past_history"
+		| "lithiasis_history"
+		| "personal_history"
+		| "female_history"
+		| "current_history"
+		| "body_check"
+		| "lisresult_list"
+		| "image_check"
+		| "diagnose"
+		| "medical_card"
+		| "near_visit"
+		| "curative_visit"
+		| "future_visit"
+		| "physicsvibration"
+		| "pvnearvisit"
+		| "compose_regiest"
+		| "common_data"
+		| "appointment_record"
+		| "form_type"
+		| "labTestType"
+		| "labTestGroup"
+		| "labTestItem"
+		| "treatmentPlan"
+		| "machineType"
+		| "maintainType"
+		| "ct_near_compose";
 }
