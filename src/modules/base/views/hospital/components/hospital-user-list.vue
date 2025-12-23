@@ -104,11 +104,6 @@ const Table = useTable({
 			minWidth: 120
 		},
 		{
-			prop: 'departmentName',
-			label: t('部门名称'),
-			minWidth: 120
-		},
-		{
 			prop: 'phone',
 			label: t('手机号码'),
 			minWidth: 120
