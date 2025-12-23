@@ -42,7 +42,16 @@ const props = defineProps({
 		type: Array,
 		default: () => []
 	},
-	checkStrictly: Boolean
+	checkStrictly: Boolean,
+	// 机构ID（租户ID），用于按租户过滤部门
+	tenantId: {
+		type: [Number, String],
+		default: null
+	},
+	isMain: {
+		type: Number,
+		default: 0
+	}
 });
 
 const emit = defineEmits(['update:modelValue']);
@@ -60,7 +69,18 @@ const keyword = ref('');
 
 // 刷新树形列表
 async function refresh() {
-	return service.base.sys.department.list().then(res => {
+	const params: any = {};
+
+	// 如果传入了 tenantId，则按租户过滤部门
+	if (props.tenantId) {
+		params.tenantId = props.tenantId;
+	}
+
+	if (props.isMain) {
+		params.isMain = props.isMain;
+	}
+
+	return service.base.sys.department.list(params).then(res => {
 		list.value = deepTree(res);
 	});
 }

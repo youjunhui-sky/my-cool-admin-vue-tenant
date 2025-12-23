@@ -34,6 +34,13 @@
 							{{ t('是否关联上下级') }}
 						</span>
 					</el-row>
+
+					<cl-dept-check
+						v-model="scope.departmentIdList"
+						:check-strictly="scope.relevance == 0"
+						:tenant-id="props.selectedHospitalId"
+						:is-main="1"
+					/>
 				</div>
 			</template>
 		</cl-upsert>

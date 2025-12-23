@@ -212,6 +212,20 @@ const Upsert = useUpsert({
 			}
 		},
 		{
+			prop: 'roleIdList',
+			label: t('角色'),
+			value: [],
+			required: true,
+			component: {
+				name: 'el-select',
+				options: [],
+				props: {
+					multiple: true,
+					'multiple-limit': 3
+				}
+			}
+		},
+		{
 			prop: 'phone',
 			label: t('手机号码'),
 			span: 12,
@@ -278,8 +292,36 @@ const Upsert = useUpsert({
 			tenantId: props.selectedHospitalId || data.tenantId,
 			isMain: 1
 		});
+	},
+
+	async onOpen() {
+		// 设置角色列表
+		await loadRoleList();
+	},
+
+	async onOpened(data) {
+		// 确保角色列表已加载（用于所有场景）
+		const roleOptions = Upsert.value?.getOptions('roleIdList');
+		if (!roleOptions || roleOptions.length === 0) {
+			await loadRoleList();
+		}
 	}
 });
+
+/**
+ * 加载角色列表
+ */
+async function loadRoleList() {
+	// 获取角色列表，仅加载 isMain = 1 的角色
+	const res = await service.base.sys.role.list({ isMain: 1, tenantId: props.selectedHospitalId });
+	Upsert.value?.setOptions(
+		'roleIdList',
+		res.map((e: any) => ({
+			label: e.name,
+			value: e.id
+		}))
+	);
+}
 
 // 监听机构选择变化，刷新用户列表
 watch(
