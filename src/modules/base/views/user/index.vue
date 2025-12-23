@@ -343,6 +343,7 @@ const Upsert = useUpsert({
 
 		next({
 			departmentId: ViewGroup.value?.selected?.id,
+			isMain: 0,
 			...data
 		});
 	},
@@ -375,7 +376,7 @@ async function loadRoleList() {
 	const { service } = useCool();
 
 	// 获取角色列表
-	const res = await service.base.sys.role.list();
+	const res = await service.base.sys.role.list({ isMain: 0 });
 	Upsert.value?.setOptions(
 		'roleIdList',
 		res.map((e: any) => ({
@@ -386,9 +387,11 @@ async function loadRoleList() {
 }
 
 // 新增成员
-function onUserAdd({ id }: Eps.BaseSysDepartmentEntity) {
+function onUserAdd({ id, tenantId }: Eps.BaseSysDepartmentEntity) {
 	Crud.value?.rowAppend({
-		departmentId: id
+		departmentId: id,
+		tenantId: tenantId,
+		isMain: 0
 	});
 }
 

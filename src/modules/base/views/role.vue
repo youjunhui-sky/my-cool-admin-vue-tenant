@@ -117,7 +117,8 @@ const Upsert = useUpsert({
 	onSubmit(data, { next }) {
 		next({
 			...data,
-			departmentIdList: data.departmentIdList || []
+			departmentIdList: data.departmentIdList || [],
+			isMain: 0
 		});
 	}
 });

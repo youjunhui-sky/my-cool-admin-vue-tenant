@@ -423,6 +423,11 @@ declare namespace Eps {
 		departmentIdList?: json;
 
 		/**
+		 * 是否管理员角色
+		 */
+		isMain?: number;
+
+		/**
 		 * 创建时间
 		 */
 		createTime?: string;
@@ -503,6 +508,11 @@ declare namespace Eps {
 		 * socketId
 		 */
 		socketId?: string;
+
+		/**
+		 * 是否机构管理员
+		 */
+		isMain?: number;
 
 		/**
 		 * 创建时间
