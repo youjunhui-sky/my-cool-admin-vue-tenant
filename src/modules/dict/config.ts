@@ -8,8 +8,8 @@ export default (): ModuleConfig => {
 		},
 		onLoad({ hasToken }) {
 			const { dict } = useDict();
-			hasToken(() => {
-				dict.refresh();
+			hasToken(async () => {
+				await dict.refresh();
 			});
 		}
 	};
